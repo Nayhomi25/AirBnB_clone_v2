@@ -238,19 +238,17 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, args):
         """Count current number of class instances"""
         counter = 0
-        try:
-            my_list = split(line, " ")
-            if my_list[0] not in self.all_classes:
-                raise NameError()
-            objects = storage.all()
-            for key in objects:
-                name = key.split('.')
-                if name[0] == my_list[0]:
-                    counter += 1
-            print(counter)
-        except NameError:
+        arg_list = split(args, " ")
+        if arg_list[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-
+            return
+        objects = storage.all()
+        for key in objects:
+            name = key.split('.')
+            if name[0] == arg_list[0]:
+                counter += 1
+        print(counter)
+            
     def help_count(self):
         """ """
         print("Retrieve the number of instances of a given class.")
