@@ -37,7 +37,6 @@ class DBStorage:
             returns a dictionary of __object
         """
         dic = {}
-        """ User, Place, Review, Amenity]"""
         classes = classes = [State, City] if cls is None \
             else [eval(cls) if type(cls) == str else cls]
         for c in classes:

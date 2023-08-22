@@ -248,7 +248,7 @@ class HBNBCommand(cmd.Cmd):
             if name[0] == arg_list[0]:
                 counter += 1
         print(counter)
-            
+
     def help_count(self):
         """ """
         print("Retrieve the number of instances of a given class.")

@@ -24,7 +24,7 @@ class test_review(test_basemodel):
     def test_user_id(self):
         """ """
         new = self.value()
-        self.assertEqual(type(new.user_id), str if 
+        self.assertEqual(type(new.user_id), str if
                          os.getenv('HBNB_TYPE_STORAGE') != 'db' else
                          type(None))
 

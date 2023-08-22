@@ -6,10 +6,14 @@ from models.city import City
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
 
 class State(BaseModel, Base):
-    """ State class """
+    """ State class
+    Attributes:
+        name: input name
+    """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
     cities = relationship("City", cascade='all, delete, delete-orphan',
@@ -18,7 +22,8 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         """Returns the list of City instances with state_id
-        equals to the current State.id"""
+        equals to the current State.id
+        """
         var = models.storage.all()
         tmp = []
         result = []

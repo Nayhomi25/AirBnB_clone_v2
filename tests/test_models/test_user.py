@@ -17,14 +17,14 @@ class test_User(test_basemodel):
     def test_first_name(self):
         """testing user first_name attribute """
         new = self.value()
-        self.assertEqual(type(new.first_name), str if 
-                         os.getenv('HBNB_TYPE_STORAGE') !='db' else
+        self.assertEqual(type(new.first_name), str if
+                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
                          type(None))
 
     def test_last_name(self):
         """ testing user last_name attr"""
         new = self.value()
-        self.assertEqual(type(new.last_name), str if 
+        self.assertEqual(type(new.last_name), str if
                          os.getenv('HBNB_TYPE_STORAGE') != 'db' else
                          type(None))
 
@@ -38,6 +38,6 @@ class test_User(test_basemodel):
     def test_password(self):
         """ testing user password attr"""
         new = self.value()
-        self.assertEqual(type(new.password), str if 
+        self.assertEqual(type(new.password), str if
                          os.getenv('HBNB_TYPE_STORAGE') != 'db' else
                          type(None))
