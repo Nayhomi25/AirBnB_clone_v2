@@ -14,12 +14,17 @@ from models.amenity import Amenity
 
 
 class DBStorage:
-    """This class manages db storage of hbnb models"""
+    """This class manages db storage of hbnb models
+    Attributes:
+        engine : private class attribute
+        session : private class attribute
+    """
     __engine = None
     __session = None
 
     def __init__(self):
-        """Initializer"""
+        """Initialization
+        """
         usr = getenv('HBNB_MYSQL_USER')
         paswd = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
@@ -45,25 +50,30 @@ class DBStorage:
         return (dic)
 
     def new(self, obj):
-        """Add the object to the current database session"""
+        """Adds the object to the current database session
+        """
         self.__session.add(obj)
 
     def save(self):
-        """Commit all changes of the current database session"""
+        """Commits all changes of the current database session
+        """
         self.__session.commit()
 
     def delete(self, obj=None):
-        """Delete from the current database session obj if not None"""
+        """Deletes from the current database session obj if not None
+        """
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
-        """Create all tables in the database"""
+        """Creates all tables in the database
+        """
         Base.metadata.create_all(self.__engine)
         sessn = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sessn)
         self.__session = Session()
 
     def close(self):
-        """Close session"""
+        """Closes session
+        """
         self.__session.close()
