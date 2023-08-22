@@ -10,15 +10,14 @@ class test_City(test_basemodel):
     def __init__(self, *args, **kwargs):
         """ """
         super().__init__(*args, **kwargs)
-        self.name = "City"
-        self.value = City
+        self.city = City()
+        self.city.name = "City"
+        self.city.state_id = "932423"
 
     def test_state_id(self):
         """ """
-        new = self.value()
-        self.assertEqual(type(new.state_id), str)
+        self.assertEqual(type(self.city.state_id), str)
 
     def test_name(self):
         """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+        self.assertEqual(type(self.city.name), str)
