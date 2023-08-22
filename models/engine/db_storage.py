@@ -42,8 +42,8 @@ class DBStorage:
             returns a dictionary of __object
         """
         dic = {}
-        classes = classes = [State, City] if cls is None \
-            else [eval(cls) if type(cls) == str else cls]
+        classes = classes = [State, City, Place, User, Amenity, Review] \
+            if cls is None else [eval(cls) if type(cls) == str else cls]
         for c in classes:
             for elem in self.__session.query(c):
                 dic["{}.{}".format(type(elem).__name__, elem.id)] = elem

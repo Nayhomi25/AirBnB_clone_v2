@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import uuid
 import models
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, String, DateTime
 
 
 Base = declarative_base()
@@ -13,7 +13,11 @@ Base = declarative_base()
 
 class BaseModel:
     """A base class for all hbnb models which defines all common
-    attributes/methods for other classes
+       attributes/methods for other classes
+    Attributes:
+        id: unique id generated
+        created_at: creation date
+        updated_at: updated date
     """
     id = Column(String(60), nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
@@ -24,10 +28,6 @@ class BaseModel:
         Args:
             args: it won't be used
             kwargs: arguments for the constructor of the BaseModel
-        Attributes:
-            id: unique id generated
-            created_at: creation date
-            updated_at: updated date
         """
         if not kwargs:
             self.id = str(uuid.uuid4())
@@ -57,8 +57,6 @@ class BaseModel:
 
     def __repr__(self):
         """return a string representaion
-        Return:
-            returns a string representaion of class
         """
         return self.__str__()
 
