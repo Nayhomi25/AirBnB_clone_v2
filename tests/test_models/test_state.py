@@ -1,18 +1,35 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+""" Unit test module for State class"""
+import unittest
+import os
 from models.state import State
 
 
-class test_state(test_basemodel):
-    """ """
+class TestState(unittest.TestCase):
+    """ Unit test for State model"""
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.state = State()
-        self.state.name = "State"
+    @classmethod
+    def setUpClass(cls):
+        """setup for test"""
+        cls.state = State()
+        cls.state.name = "Arizona"
+
+    @classmethod
+    def teardown(cls):
+        """removes instance at the end of the test """
+        del cls.state
+
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def test_name3(self):
-        """ """
+        """ test for state name attr type"""
         self.assertEqual(type(self.state.name), str)
+
+
+if __name__ == "__main__":
+    unittest.main()

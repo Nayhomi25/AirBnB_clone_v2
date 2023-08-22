@@ -1,36 +1,46 @@
 #!/usr/bin/python3
-""" A test file"""
-from tests.test_models.test_base_model import test_basemodel
-from models.review import Review
+""" unit test module for review class"""
+import unittest
 import os
+from models.base_model import BaseModel
+from models.review import Review
 
 
-class test_review(test_basemodel):
-    """ """
+class TestReview(unittest.TestCase):
+    """ test cases for the Review model"""
 
-    def __init__(self, *args, **kwargs):
-        """ testing review __init__"""
-        super().__init__(*args, **kwargs)
-        self.name = "Review"
-        self.value = Review
+    @classmethod
+    def setUpClass(cls):
+        """set up for test"""
+        cls.rev = Review()
+        cls.rev.place_id = "4321-dcba"
+        cls.rev.user_id = "123-bca"
+        cls.rev.text = "Best class"
+
+    @classmethod
+    def teardown(cls):
+        """removes instance at the end of the test"""
+        del cls.rev
+
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def test_place_id(self):
-        """ testing review place_id attr"""
-        new = self.value()
-        self.assertEqual(type(new.place_id), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+        """ test for review place_id attr type"""
+        self.assertEqual(type(self.rev.place_id), str)
 
     def test_user_id(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.user_id), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+        """ test for review user_id attr type"""
+        self.assertEqual(type(self.rev.user_id), str)
 
     def test_text(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.text), str if
-                         os.getenv('HBNB_TYPE_STORAGE') != 'db' else
-                         type(None))
+        """ test for review text attr type"""
+        self.assertEqual(type(self.rev.text), str)
+
+
+if __name__ == "__main__":
+    unittest.main()
