@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
                 pass
             if type(attributes[1]) is not tuple:
                 setattr(new_instance, attributes[0], attributes[1])
-        storage.save()
+        new_instance.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -214,18 +214,18 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
         print_list = []
-
+        objects = storage.all()
         if args:
-            args = args.split(' ')[0]  # remove possible trailing args
-            if args not in HBNBCommand.classes:
+            arg = args.split(' ')[0]  # remove possible trailing args
+            if arg not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+            for key in objects:
+                if key.split('.')[0] == arg:
+                    print_list.append(objects[key])
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
+            for k, v in objects.items():
+                print_list.append(v)
 
         print(print_list)
 
