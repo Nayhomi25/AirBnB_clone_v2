@@ -113,7 +113,6 @@ class TestPlace(unittest.TestCase):
         """ Test for aenity_ids attr type"""
         self.assertEqual(type(self.place.amenity_ids), list)
 
-    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', 'NO FILE')
     def test_save_Place(self):
         """test if the save works"""
         self.place.save()

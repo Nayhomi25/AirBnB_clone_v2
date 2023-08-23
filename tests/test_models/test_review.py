@@ -65,7 +65,6 @@ class TestReview(unittest.TestCase):
         """ test for review text attr type"""
         self.assertEqual(type(self.rev.text), str)
 
-    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', 'NO FILE')
     def test_save_Review(self):
         """test if the save works"""
         self.rev.save()

@@ -59,7 +59,6 @@ class TestCity(unittest.TestCase):
         """ test for name sttr type"""
         self.assertEqual(type(self.city.name), str)
 
-    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', 'NO FILE')
     def test_save_City(self):
         """test if the save works"""
         self.city.save()
