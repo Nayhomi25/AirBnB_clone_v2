@@ -71,6 +71,7 @@ class TestUser(unittest.TestCase):
         """ testing user password attr"""
         self.assertEqual(type(self.user.password), str)
 
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', 'NO FILE')
     def test_save_User(self):
         """test if the save works"""
         self.user.save()

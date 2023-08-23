@@ -63,7 +63,7 @@ class TestBasemodel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
-
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', 'NO FILE')
     def test_save(self):
         """ Test for save() """
         i = self.value()
