@@ -4,6 +4,7 @@ import os
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
+import pep8
 
 
 class TestAmenity(unittest.TestCase):
@@ -30,6 +31,12 @@ class TestAmenity(unittest.TestCase):
     def test_checking_for_docstring_Amenity(self):
         """checking for docstrings"""
         self.assertIsNotNone(Amenity.__doc__)
+
+    def test_pep8_Amenity(self):
+        """Tests pep8 style"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/amenity.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_attributes_Amenity(self):
         """chekcing if amenity have attibutes"""
