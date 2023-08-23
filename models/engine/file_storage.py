@@ -3,7 +3,6 @@
 import json
 
 
-@unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'No file')
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
