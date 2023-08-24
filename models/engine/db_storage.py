@@ -11,8 +11,6 @@ from models.user import User
 from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
-from sqlalchemy.orm.session import Session
-from sqlalchemy.engine.base import Engine
 
 
 class DBStorage:

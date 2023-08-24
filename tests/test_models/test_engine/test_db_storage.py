@@ -12,6 +12,8 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.engine.db_storage import DBStorage
+from sqlalchemy.orm.session import Session
+from sqlalchemy.engine.base import Engine
 
 
 @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != 'db', 'NO DB')
