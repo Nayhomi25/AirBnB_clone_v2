@@ -1,4 +1,4 @@
-#!/bin/usr/env bash
+#!/usr/bin/env bash
 # Sets up the web servers for the deployement of web_static
 
 apt-get update
