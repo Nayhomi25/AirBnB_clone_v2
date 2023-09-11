@@ -14,6 +14,20 @@ env.key_filename = "~/.ssh/id_rsa"
 run_locally = True
 
 
+def do_pack():
+    """
+    generates a .tgz archive from the contents of the web_static folder
+    """
+    local("mkdir -p versions")
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    archive_name = "versions/web_static_{}.tgz".format(timestamp)
+    result = local("tar -czvf {} web_static".format(archive_name))
+    if result.succeeded:
+        return archive_name
+    else:
+        return None
+
+
 def do_deploy(archive_path):
     """Distributes an archive to a web server.
     Args:
@@ -78,3 +92,11 @@ def do_deploy(archive_path):
 
     print("New version deployed!")
     return True
+
+
+def deploy():
+    """creates and distributes an archive to the web servers"""
+    path = do_pack()
+    if path is None:
+        return False
+    return do_deploy(path)
