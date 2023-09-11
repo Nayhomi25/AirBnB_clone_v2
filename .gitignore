@@ -4,3 +4,5 @@ models/engine/__pycache__
 main_delete.py
 .gitignore
 file.json
+testprikey
+testpubkey
